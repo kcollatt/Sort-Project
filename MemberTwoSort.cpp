@@ -6,6 +6,7 @@
 using namespace std;
 #include "MemberTwoSort.h"
 
+//Constructor 
 MemberTwoSort::MemberTwoSort()
 {
 
@@ -35,7 +36,7 @@ void MemberTwoSort::heapify(int array[], int index, int i)
     if (l < index && array[l] > array[largest])
         largest = l;
 
-    // If right child is larger than largest 
+    // If right child is larger than root 
     if (r < index && array[r] > array[largest])
         largest = r;
 
@@ -52,7 +53,7 @@ void MemberTwoSort::heapify(int array[], int index, int i)
 // Heap sort main function
 void MemberTwoSort::heapSort(int array[], int index)
 {
-    // Build heap (rearrange array)
+    // Build heap by rearrange the array
     for (int i = index / 2 - 1; i >= 0; i--)
     {
         heapify(array, index, i);
@@ -72,15 +73,18 @@ void MemberTwoSort::heapSort(int array[], int index)
 // This function arranging the elements to smallest to largest
 int MemberTwoSort::partition(int array[], int low, int high)
 {
-    int pivot = array[high]; // pivot
-    int i = (low - 1); // Index of smaller element and indicates the right position of pivot found so far
+    // pivot
+    int pivot = array[high]; 
+    
+    // Index of smaller element and indicates the right position of pivot found
+    int i = (low - 1); 
 
     for (int j = low; j <= high - 1; j++)
     {
         // If current element is smaller than the pivot
         if (array[j] < pivot)
         {
-            i++; // increment index of smaller element
+            i++; 
             swap(&array[i], &array[j]);
         }
     }
@@ -88,17 +92,15 @@ int MemberTwoSort::partition(int array[], int low, int high)
     return i;
 }
 
-//Quick Sort
+//Quick Sort Function
 void MemberTwoSort::quickSort(int array[], int low, int high)
 {
     if (low < high)
     {
-        /* pi is partitioning index, arr[p] is now
-        at right place */
+        // pi is partitioning index 
         int pi = partition(array, low, high);
 
-        // Separately sort elements before
-        // partition and after partition
+        // Separately sorting the elements before partition and after partition
         quickSort(array, low, pi - 1);
         quickSort(array, pi + 1, high);
     }
